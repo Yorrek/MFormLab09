@@ -77,11 +77,13 @@ void OGLWidget::paintGL()
         // Segment1:
         for (int i = 0; i<(int)ARRAYSIZE(segment1.points); i++){
             glVertex2f( segment1.points[i].m_x, segment1.points[i].m_y );
+            QPoint(segment1.points[i].m_x, segment1.points[i].m_y);
         }
 
         // Segment2:
         for (int i = 0; i < (int)ARRAYSIZE(segment2.points); i++){
             glVertex2f( segment2.points[i].m_x, segment2.points[i].m_y );
+            QPoint(segment2.points[i].m_x, segment2.points[i].m_y);
         }
         glEnd();
     }
@@ -110,19 +112,23 @@ void OGLWidget::paintGL()
 
         poly3.interpolCubic(&poly3);
 
-        glColor3ub(0x00, 0xFF, 0x00); // draw color = green
+
 
         glBegin(GL_LINE_STRIP);
         for (int i = 0; i < (int)poly.cubicPoints.size(); i++){
+            glColor3ub(0x00, 0xFF, 0x00); // draw color = green
             glVertex2f( poly.cubicPoints[i].m_x, poly.cubicPoints[i].m_y);
+            QPoint(poly.cubicPoints[i].m_x, poly.cubicPoints[i].m_y);
         }
         glEnd();
 
-        glColor3ub(0x00, 0xFF, 0xFF); // draw color = cyan
+
 
         glBegin(GL_LINE_STRIP);
         for (int i = 0; i < (int)poly3.interpolPoints.size(); i++){
-            glVertex2f( poly.interpolPoints[i].m_x, poly.interpolPoints[i].m_y);
+            glColor3ub(0x00, 0xFF, 0xFF); // draw color = cyan
+            glVertex2f( poly3.interpolPoints[i].m_x, poly3.interpolPoints[i].m_y);
+            QPoint(poly3.interpolPoints[i].m_x, poly3.interpolPoints[i].m_y);
         }
         glEnd();
 
